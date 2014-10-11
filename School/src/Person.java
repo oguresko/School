@@ -31,20 +31,5 @@ public class Person {
 		PESEL = pESEL;
 	}
 
-	public String getIndex() {
-		return index;
-	}
 
-	public void setIndex(String index) {
-		this.index = index;
-	}
-
-	public Person getStudent() {
-		return Student;
-	}
-
-	public void setStudent(Person student) {
-		Student = student;
-	}
-	
 }
