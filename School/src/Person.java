@@ -31,5 +31,13 @@ public class Person {
 		PESEL = pESEL;
 	}
 
+	public Student getStudent() {
+		return Student;
+	}
+
+	public void setStudent(Student student) {
+		Student = student;
+	}
+
 
 }
