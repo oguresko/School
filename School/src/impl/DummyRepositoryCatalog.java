@@ -10,6 +10,6 @@ public class DummyRepositoryCatalog implements IRepositoryCatalog{
 		@Override
 		public IStudentRepository getStudents() {
 			
-			return new DummyStudentRepository();
+			return new DummyStudentRepository(db);
 	}
 }

@@ -12,13 +12,13 @@ public class DummyStudentRepository implements IStudentRepository {
 	
 	private DummyDb db;
 	
-	public  DummyUserRepository(DummyDb db) {
+	public  DummyStudentRepository(DummyDb db) {
 			super();
 			this.db = db;
 		}
 	@Override
 	public void save(Student entity) {
-		// TODO Auto-generated method stub
+			db.students.add(entity);
 		
 	}
 
@@ -30,12 +30,11 @@ public class DummyStudentRepository implements IStudentRepository {
 
 	@Override
 	public void delete(Student entity) {
-		// TODO Auto-generated method stub
+			db.students.remove(entity);
 		
 	}
 
 	@Override
-	public Student get(int id) {
 		public Student get(int id) {
 				for(Student u: db.students)
 						if(u.getId()==id)
@@ -45,14 +44,12 @@ public class DummyStudentRepository implements IStudentRepository {
 
 	@Override
 	public List<Student> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+			return db.students;
 	}
 
 	@Override
 	public List<Student> withMark(Mark mark) {
-		// TODO Auto-generated method stub
-		return null;
+			return withMark(mark.getId());
 	}
 
 	@Override
