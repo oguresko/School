@@ -5,6 +5,11 @@ import java.util.*;
 
 public class Person extends Entity{
 
+	public Person(){
+		
+		this.addressses=new ArrayList<Address>();
+	}
+	
 	private String Name;
 	private String Surname;
 	private String PESEL;
