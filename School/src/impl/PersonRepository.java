@@ -1,36 +1,23 @@
 package impl;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import domain.Person;
+import repositories.IRepository;
+import unitofwork.IUnitOfWork;
 
 public class PersonRepository extends Repository<Person>{
 	
-	private String insertSql=
-				"INSERT INTO person(name,surname,pesel) VALUES(?,?,?)";
-	
-	private String updateSql=
-				"UPDATE person SET (name,surname,pesel)=(?,?,?) WHERE id=?";
-	
-	public PersonRepository(Connection connection, IEntityBuilder<Person> builder) {
-			super(connection, builder);
-		}
-	
-	@Override
-	protected String getTableName() {
-		return "person";
-	}
-	
-	@Override
-	protected String getInsertQuery() {
-		return insertSql;
-	}
-	
-	@Override
-	protected String getUpdateQuery() {
-		return updateSql;
-	}
+	protected PersonRepository(Connection connection,
+				IEntityBuilder<Person> builder, IUnitOfWork uow) {
+			super(connection, builder, uow);
+			}
+
 	
 	@Override
 	protected void setUpInsertQuery(Person entity) throws SQLException {
@@ -44,5 +31,21 @@ public class PersonRepository extends Repository<Person>{
 		update.setString(2, entity.getSurname());
 		update.setString(3, entity.getPESEL());
 		update.setInt(4, entity.getId());
+	}
+	
+	@Override
+	protected String getTableName() {
+			return "person";
+	}
+	
+	@Override
+	protected String getUpdateQuery() {
+		return "update person set (name,surname,pesel)=(?,?,?)"
+				+ "where id=?";
+	}
+	
+	@Override
+	protected String getInsertQuery() {
+		return "insert into person(name,surname,pesel) values(?,?,?)";
 	}
 }
